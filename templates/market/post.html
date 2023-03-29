@@ -1,0 +1,36 @@
+{%extends "./../base.html" %}
+
+
+{%block content%}
+
+
+<div class="post">
+    <a class="post-title" href="{% url 'view_post' post.post_id %}">Post #{{post.post_id}}</a>
+    <div class="post-image">
+        <div class="post-platform-type">{{post.platform_type_id}}</div>
+    </div>
+    <div class="post-date">{{post.date_created}}</div>
+    <div class="post-username">@{{post.influencer_id.username}}</div>
+
+    <div class="post-platform">{{post.platform_id}}</div>
+    <div class="post-price">{{post.price}}$</div>
+
+    {% if user == post.influencer_id %}
+    <div class="button">
+        <a href="{% url 'edit_post' post.post_id %}">Edit post</a>
+    </div>
+    
+    {% endif %}
+    {% if user.is_influencer == False %}
+    <div class="button">
+        <a href="{% url 'order_post' post.post_id %}">Order</a>
+    </div>
+
+    {% endif %}
+</div>
+
+
+
+
+
+{%endblock content%}

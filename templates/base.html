@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+
+<head>
+    {%block title%}
+    <title>influencer market</title>
+    {%endblock title%}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            {% if user.is_authenticated%}
+                <li style="float: left"><a href="{%url 'home'%}">Home</a></li>
+                <li style="color: black;"><a href="">{{user.email}}</a></li>
+                <li><a href="{%url 'view_orders'%}">Orders</a></li>
+
+                {% if user.is_influencer%}
+                    <li><a href="{% url 'create_post'%}">New Post</a></li>
+                {%endif%}
+
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                
+            {%else%}
+                <li style="float: left"><a href="{%url 'home'%}">Home</a></li>
+                <li><a href="{%url 'login'%}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {%endif%}
+
+        </ul>
+    </div>
+    <div class="container">
+        {% block content %} {% endblock content %}
+    </div>
+
+</body>
+
+</html>

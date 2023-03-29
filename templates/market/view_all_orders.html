@@ -1,0 +1,17 @@
+{%extends "./../base.html" %}
+
+
+{%block content%}
+    <p>Order count: {{count}}</p>
+    <div class="order">
+        {%for order in orders%}
+            <ul>
+                <li>Date: {{order.created_at}}</li>
+                <li>Customer email: {{order.customer_id.email}}</li>
+                <li>Creator: @{{order.post_id.influencer_id}}</li>
+                <li>Post info <a href="{% url 'view_post' order.post_id.post_id %}">View post</a></li>
+            </ul>
+
+        {% endfor %}
+    </div>
+{%endblock content%}

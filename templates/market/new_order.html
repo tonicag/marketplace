@@ -1,0 +1,22 @@
+{%extends "./../base.html" %}
+
+
+{%block content%}
+<p>POST</p>
+<ul>
+    <li>Post #{{post.post_id}}</li>
+    <li>created at {{post.date_created}}</li>
+    <li>@{{post.influencer_id.email}}</li>
+    <li>{{post.platform_type_id}}</li>
+    <li>{{post.platform_id}}</li>
+    <li>{{post.price}}$</li>
+</ul>
+
+
+<form method="post">
+    {% csrf_token %}
+    <label>Are you sure you want to order this post?</label>
+    <button type="submit" class="btn btn-primary">Order post</button>
+</form>
+
+{%endblock content%}
